@@ -1,2 +1,16 @@
 # BallTracking
 Track ball trajectories from videos using traditional image processing techniques
+
+# Required Packages
+- Python3.7
+  - OpenCV
+  - numpy
+  - imutils
+  - matplotlib
+
+# Instrcutions
+## BallTracking.py
+Contains function *BallTracking(vidDir, show=)* 
+- Inputs: video directory (String)
+          show video frame on/off (Bool)
+- Return: nx2 position np array containing coordinates of ball in each frame (x in first column, y in second column), -1 denotes ball not found in frame.
