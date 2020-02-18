@@ -17,6 +17,10 @@ def BallTracking(vidDir, show=False):
     # Initialize ball position array
     position = np.empty((0,2));
     
+    # Image generation parameters
+    imageStep = 20
+    imageList = []
+    
     # Image filter parameters (HSV range)
     lowerB = (0,50,128)
     upperB = (20,140,248)
@@ -80,6 +84,14 @@ def BallTracking(vidDir, show=False):
         
         print('Frame [%d/%d]' % (cntFrame, numFrame))
         
+        if cntFrame == 1:
+            imageList.append(frame)
+        elif cntFrame % imageStep == 0:
+            image = frame.copy()
+            mask = np.zeros(frame.shape,np.uint8)
+            mask[int(y1-radius-2):int(y1+radius+2),int(x1-radius-2):int(x1+radius+2),:] = image[int(y1-radius-2):int(y1+radius+2),int(x1-radius-2):int(x1+radius+2),:]
+            imageList.append(mask)
+        
         # Interupt window by pressing q
         if cv2.waitKey(100) & 0xFF == ord('q'):
             print("q")
@@ -92,14 +104,24 @@ def BallTracking(vidDir, show=False):
     cv2.destroyAllWindows()
     cv2.waitKey(1)
     
-    return position
+    return position, imageList
 
 
 if __name__ == '__main__':
     
-    position = BallTracking('[video directory]', show=True)
+    position, imageList = BallTracking('[video directory]', show=True)
 
     plt.figure()
     plt.plot(position[:,0],position[:,1],':k',linewidth=1)
     plt.show()
+    
+    # Overlay basketball trajectory
+    for i,_ in enumerate(imageList):
+        if i == 0: 
+            outImage = imageList[i]
+            continue
+        outImage = cv2.addWeighted(outImage,0.9,imageList[i],1,0)
+
+    cv2.imshow('Image', outImage)
+    cv2.waitKey(0)
 
