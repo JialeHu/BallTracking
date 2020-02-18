@@ -13,6 +13,8 @@ Track ball trajectories from videos using traditional image processing technique
 Contains function *BallTracking(vidDir, show=)* 
 - Inputs: video directory (String)
           show video frame on/off (Bool)
-- Return: nx2 position np array containing coordinates of ball in each frame (x in first column, y in second column), -1 denotes ball not found in frame.
+- Return: Nx2 position np array containing coordinates of ball in each frame (x in first column, y in second column), -1      denotes ball not found in frame.
+          A list of image for overlay
+          
 ### getHSV.py
 get mean, max, min of HSV values of a image
