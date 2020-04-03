@@ -8,7 +8,7 @@ Track ball trajectories from videos using traditional image processing technique
   - imutils
   - matplotlib
 
-## Instrcutions
+## Instructions
 ### BallTracking.py
 Contains function *BallTracking(vidDir, show=)* 
 - Inputs: 
