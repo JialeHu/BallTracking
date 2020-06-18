@@ -10,7 +10,7 @@ Track ball trajectories from videos using traditional image processing technique
 
 ## Instructions
 ### BallTracking.py
-Contains function *BallTracking(vidDir, show=)* 
+#### function *BallTracking(vidDir, show=)* 
 - Inputs: 
   - video directory (String)
   - show video frame on/off (Bool)
@@ -19,4 +19,4 @@ Contains function *BallTracking(vidDir, show=)*
   - A list of image for overlay
           
 ### getHSV.py
-get mean, max, min of HSV values of a image
+get mean, max, min of HSV values of an image
